@@ -1,5 +1,3 @@
-import postData from './application-data.js';
-
 import {
   SET_POST_DATA
  } from '../actions';

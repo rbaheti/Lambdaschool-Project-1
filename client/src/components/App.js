@@ -36,7 +36,6 @@ class App extends Component {
           {this.getDisplayedPosts().map((post, index) => {
             return (
               <PostContainer post={post} key={index} />
-
             );
           })}
         </div>

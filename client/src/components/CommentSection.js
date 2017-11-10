@@ -9,7 +9,7 @@ class CommentSection extends Component {
 		super();
 
 		this.state = {
-			username: "ivan",
+			username: "rashmi",
 			comments: []
 		}
 	}
@@ -55,7 +55,9 @@ class CommentSection extends Component {
 				</div>
 
 				<div className="Comments-add">
-					<input className="Comments-addField" type="text" onKeyDown={this.addComment} ref={input => this.input = input} placeholder="Add a comment..."></input>
+					<input className="Comments-addField" type="text" onKeyDown={this.addComment}
+						ref={input => this.input = input} placeholder="Add a comment...">
+					</input>
 				</div>
 			</div>
 		);

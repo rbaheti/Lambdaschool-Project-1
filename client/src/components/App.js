@@ -8,13 +8,12 @@ import SearchBar from './SearchBar.js';
 import PostContainer from './PostContainer.js';
 
 class App extends Component {
-
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-     this.props.getPostData();
+    this.props.getPostData();
   }
 
   getDisplayedPosts() {

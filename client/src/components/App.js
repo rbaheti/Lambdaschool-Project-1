@@ -3,9 +3,11 @@ import './App.css';
 import { connect } from 'react-redux';
 import { getPostData } from '../actions';
 import axios from 'axios';
+import { Switch, Route } from 'react-router-dom'
 
 import SearchBar from './SearchBar.js';
 import PostContainer from './PostContainer.js';
+import CommentSection from './CommentSection.js';
 
 class App extends Component {
   constructor(props) {
@@ -38,6 +40,8 @@ class App extends Component {
             );
           })}
         </div>
+          <Route exact={true} path="/" component={App} />
+          <Route exact={true} path="/user/:username" component={UserPostContainer}/>
       </div>
     );
   }

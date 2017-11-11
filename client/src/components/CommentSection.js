@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
+import { Link } from 'react-router-dom';
 
 import './CommentSection.css';
 
@@ -37,13 +38,18 @@ class CommentSection extends Component {
 
 	render () {
 		const timestamp = this.props.timestamp;
+		console.log(this.props.comments);
 		return (
 			<div className="Comments">
 				<div className="Comments-list">
-					{this.state.comments.map((comment) => {
+					{this.props.comments.map((comment) => {
 						return (
 							<div className="Comment">
-								<h3 className="Comment-username">{comment.username}</h3>
+								<h3 className="Comment-username">
+									<Link className="Comment-username-link" 
+										to={`/comment/${comment.username}`}> {comment.username} 
+									</Link>
+								</h3>
 								<p className="Comment-body">{comment.text}</p>
 							</div>
 						);

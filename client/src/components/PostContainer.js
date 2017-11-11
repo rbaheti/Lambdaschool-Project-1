@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './PostContainer.css';
 
@@ -10,7 +11,11 @@ function PostContainer(props) {
 		<div className="Post">
 			<div className="Post-header">
 				<img src={post.thumbnailUrl} />
-				<h3 className="Post-username">{post.username}</h3>
+				<h3 className="Post-username">
+					<Link className="Post-username-link" 
+						to={`/post/${post.username}`}> {post.username} 
+					</Link>
+				</h3>
 			</div>
 
 			<div className="Post-image">
@@ -24,7 +29,6 @@ function PostContainer(props) {
 
 				<CommentSection comments={post.comments} timestamp={post.timestamp} />
 			</div>
-
 		</div>
 	);
 };

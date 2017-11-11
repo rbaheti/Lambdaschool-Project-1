@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers';
 import ReduxPromise from 'redux-promise';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 const configureStore = applyMiddleware(ReduxPromise)(createStore);
 const store = configureStore(
@@ -15,9 +16,11 @@ const store = configureStore(
 );
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>, document.getElementById('root')
+	<Provider store={store}>
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+	</Provider>, document.getElementById('root')
  );
   
 registerServiceWorker();

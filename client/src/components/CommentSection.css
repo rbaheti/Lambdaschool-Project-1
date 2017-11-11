@@ -6,6 +6,10 @@
 	display: inline;
 }
 
+.Comment-username-link {
+	text-decoration: none;
+}
+
 .Comment-body {
 	display: inline;
 	padding-left: 10px;

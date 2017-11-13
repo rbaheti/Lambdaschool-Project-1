@@ -13,7 +13,7 @@ function PostContainer(props) {
 				<img src={post.thumbnailUrl} />
 				<h3 className="Post-username">
 					<Link className="Post-username-link" 
-						to={`/post/${post.username}`}> {post.username} 
+						to={`/userpost/${post.username}`}> {post.username} 
 					</Link>
 				</h3>
 			</div>

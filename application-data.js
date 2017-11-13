@@ -2,7 +2,7 @@ module.exports = [
     {
         username: "philzcoffee",
         thumbnailUrl: 'https://scontent-sjc2-1.cdninstagram.com/t51.2885-19/11201517_887808411287357_1307163552_a.jpg',
-        imageUrl: 'https://scontent-sjc2-1.cdninstagram.com/t51.2885-15/e35/20066915_1526002357431295_3266739979170086912_n.jpg',
+        imageUrl: 'https://scontent-lax3-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/23421378_2049386498628052_7251361639964868608_n.jpg',
         likes: 400,
         timestamp: "July 17th 2017, 12:42:40 pm",
         comments: [

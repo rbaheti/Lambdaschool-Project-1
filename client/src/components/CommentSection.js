@@ -38,16 +38,16 @@ class CommentSection extends Component {
 
 	render () {
 		const timestamp = this.props.timestamp;
-		console.log(this.props.comments);
+		//console.log(this.props.comments);
 		return (
 			<div className="Comments">
 				<div className="Comments-list">
-					{this.props.comments.map((comment) => {
+					{this.props.comments.map((comment, index) => {
 						return (
-							<div className="Comment">
+							<div className="Comment"  key={index}>
 								<h3 className="Comment-username">
 									<Link className="Comment-username-link" 
-										to={`/comment/${comment.username}`}> {comment.username} 
+										to={`/userpost/${comment.username}`}> {comment.username} 
 									</Link>
 								</h3>
 								<p className="Comment-body">{comment.text}</p>

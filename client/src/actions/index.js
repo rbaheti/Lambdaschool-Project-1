@@ -6,7 +6,7 @@ export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT';
 export const getPostData = () => {
 	const postDataEndpoint = 'http://localhost:5000/postdata';
 	const postData = axios.get(postDataEndpoint);
-    console.log(postData);
+    //console.log("postData: " + postData);
 
 	return {
 		type: SET_POST_DATA,

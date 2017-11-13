@@ -5,7 +5,7 @@ import {
 export default (allPosts = [], action) => {
 	switch (action.type) {
     case SET_POST_DATA:
-      console.log("reducer: ", action);
+      //console.log("reducer: ", action);
       return action.payload.data;
 
     default:

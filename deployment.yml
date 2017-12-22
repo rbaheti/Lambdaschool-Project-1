@@ -1,0 +1,16 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: lambdaschool-instagram-project # You'll need to manually type this out. The environment variable won't work
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels: # labels to select/identify the deployment
+        app: lambdaschool-instagram-project 
+    spec:     # pod spec                  
+      containers: 
+      - name: lambdaschool-instagram-project
+        image: gcr.io/lambdaschool-instagram-project/lambda-backend-devops:v1  # image we pushed
+        ports:
+        - containerPort: 3030

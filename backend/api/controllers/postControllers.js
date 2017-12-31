@@ -1,16 +1,19 @@
 const Post = require('../models/postModels');
 
 const postCreate = (req, res) => {
-  const { title, content, author } =  req.body;
-  const newPost = new Post({ title, content, author });
+  const { username, thumbnailUrl, imageUrl, likes, timestamp, comments } =  req.body;
+  const newPost = new Post({ username, thumbnailUrl, imageUrl, likes, timestamp, comments });
+  console.log("newPost: ", newPost);
   newPost.save(newPost, (err, savedpost) => {
     if (err) {
+      console.log("err: ", err);
       res.status(500).json(err);
       return;
     }
     res.json(savedpost);
   })
 };
+
 const postsGetAll = (req, res) => {
   Post.find({})
     .then(posts => {
@@ -19,10 +22,11 @@ const postsGetAll = (req, res) => {
     })
       .catch(err => res.status(422).json(err));
 };
+
 const postGetById = (req, res) => {
   const { id } = req.params;
   Post.findById(id)
-    .populate('author comments.author', 'username')
+    .populate('username comments.username', 'username')
     .exec()
       .then((singlePost) => {
         if (singlePost === null) throw new Error();
@@ -30,10 +34,11 @@ const postGetById = (req, res) => {
       })
         .catch(err => res.status(422).json(err));
 };
+
 const postCommentAdd = (req, res) => {
   const { id } = req.params;
-  const { author, text } = req.body;
-  const comment = { author, text };
+  const { username, text } = req.body;
+  const comment = { username, text };
 	// find a single post
 	// grab comments array, add our comment to it.
 	// save post
@@ -46,7 +51,7 @@ const postCommentAdd = (req, res) => {
         .save()
         .then(newPost => {
           Post.findById(newPost._id)
-          .populate('comments.author', 'username')
+          .populate('comments.username', 'username') // get 'username' from User's username using 'comment.username'
           .exec((badError, savedpost) => {
             if (badError) {
               throw new Error()

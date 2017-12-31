@@ -7,6 +7,7 @@ module.exports = app => {
 	app.route('/login').post(userControllers.userLogin);
 	app.route('/new-post').post(postControllers.postCreate);
 	app.route('/posts').get(postControllers.postsGetAll);
+	app.route('/users').get(userControllers.usersGetAll);
 	app
 		.route('/posts/:id')
 		.get(postControllers.postGetById)

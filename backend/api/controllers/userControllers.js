@@ -29,8 +29,18 @@ const userCreate = (req, res) => {
       })
       .catch(err => res.status(422).json({ error: err.message }));
   };
+
+  const usersGetAll = (req, res) => {
+  User.find({})
+    .then(users => {
+      if (users.length === 0) throw new Error();
+      res.json(users)
+    })
+      .catch(err => res.status(422).json(err));
+};
   
   module.exports = {
     userLogin,
-    userCreate
+    userCreate,
+    usersGetAll
 };

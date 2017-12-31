@@ -5,10 +5,8 @@ import { Link } from 'react-router-dom';
 import './CommentSection.css';
 
 class CommentSection extends Component {
-
 	constructor(props) {
 		super();
-
 		this.state = {
 			username: "rashmi",
 			comments: []

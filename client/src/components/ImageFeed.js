@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './ImageFeed.css';
 import { connect } from 'react-redux';
 import { getPostData } from '../actions';
 import { NavLink } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 import SearchBar from './SearchBar.js';
 import PostContainer from './PostContainer.js';
 
-class App extends Component {
+class ImageFeed extends Component {
   constructor(props) {
     super(props);
   }
@@ -28,9 +28,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="ImageFeed">
         <header>
-          <h1 className="App-title">instagram</h1>
+          <h1 className="ImageFeed-title">instagram</h1>
           <SearchBar/>
         </header>
         <div className="Posts">
@@ -54,4 +54,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {getPostData})(App);
+export default connect(mapStateToProps, {getPostData})(ImageFeed);

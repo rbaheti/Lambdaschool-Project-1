@@ -5,65 +5,104 @@ import { Link } from 'react-router-dom';
 import "./Login.css";
 
 export default class CreateNewPost extends Component {
-  constructor(){
-    super();
-    this.state = {
-      userName: '',
-      password: '',
+	constructor() {
+		super();
+		this.state = {
+			username: '',
+			thumbnailUrl: '',
+	      	imageUrl: '',
+	      	timestamp: ''
+    	}
+	}
+
+	handleSetUsername = (event) => {
+    	this.setState({username: event.target.value});
     }
-    this.handleSetUserName = this.handleSetUserName.bind(this);
-    this.handleSetPassword = this.handleSetPassword.bind(this);
-    this.loginWithUser = this.loginWithUser.bind(this);
-  }
-  handleSetUserName(e) {
-    this.setState({userName: e.target.value});
-  }
-  handleSetPassword(e) {
-    this.setState({password: e.target.value});
-  }
-  loginWithUser(e) {
-    e.preventDefault();
-    const user = {username: this.state.userName, password: this.state.password};
-    axios.post('http://localhost:3030/login', user)
-      .then((data) => {
-        localStorage.setItem('uuID', data.data._id);
-        setTimeout(() => {
-          window.location = '/posts';
-        }); 
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-  render() {
-    return (
-      <form className="Login-form">
-        <FormGroup className="Login-group" controlId="formHorizontalEmail">
-          User Name
-          <FormControl 
-            id="formHorizontalEmail"
-            className="form-control"
-            onChange={this.handleSetUserName} 
-            placeholder="User Name"
-            type="text" 
-            value={this.state.userName} 
-          />
-        </FormGroup>
-        <FormGroup className="Login-group" controlId="formHorizontalPassword">
-          Password
-          <FormControl 
-            id="formHorizontalPassword"
-            className="form-control"
-            onChange={this.handleSetPassword} 
-            placeholder="password"
-            type="password" 
-            value={this.state.password} 
-          />
-          <Link to="/create-user">Don't have an account? Sign up here.</Link>
-          <br />
-          <button className="btn btn-default" onClick={this.loginWithUser}>Login</button>
-        </FormGroup>
-      </form>
-    )
-  }
+
+    handleSetThumbnailUrl = (event) => {
+    	this.setState({thumbnailUrl: event.target.value});
+    }
+
+    handleSetImageUrl = (event) => {
+    	this.setState({imageUrl: event.target.value});
+    	console.log("imageUrl: ", this.state.imageUrl);
+    }
+
+    handleSetTimestamp = (event) => {
+    	this.setState({timestamp: event.target.value});
+    }
+
+    submitForm = (event) => {
+    	event.preventDefault();
+    	const newPost = {
+    		username: this.state.userName, 
+    		thumbnailUrl: this.state.thumbnailUrl,
+    		imageUrl: this.state.imageUrl,
+    		timestamp: this.state.timestamp
+    	};
+    	axios.post('http://localhost:3030/newpost', newPost)
+      		.then((data) => {
+		        localStorage.setItem('uuID', data.data._id);
+		        setTimeout(() => {
+		          window.location = '/posts';
+		        }); 
+      		})
+      		.catch((err) => {
+        		console.log(err);
+      		});
+    }
+
+	render() {
+		return (
+			<form>
+				<FormGroup>
+	          		Username:
+	          		<FormControl 
+			            id="formUsername"
+			            className="form-control"
+			            onChange={this.handleSetUsername} 
+			            placeholder="username"
+			            type="text" 
+			            value={this.state.username} 
+	          		/>
+	        	</FormGroup>
+				<FormGroup>
+					Thumbnail Url:
+	          		<FormControl 
+			            id="formThumbnailUrl"
+			            className="form-control"
+			            onChange={this.handleSetThumbnailUrl} 
+			            placeholder="Thumbnail Url"
+			            type="text" 
+			            value={this.state.thumbnailUrl} 
+	          		/>
+	        	</FormGroup>
+	        	<FormGroup>
+	        		Image Url:
+	          		<FormControl 
+			            id="formImageUrl"
+			            className="form-control"
+			            onChange={this.handleSetImageUrl} 
+			            placeholder="Image Url"
+			            type="text" 
+			            value={this.state.imageUrl} 
+	          		/>
+	        	</FormGroup>
+	        	<FormGroup>
+	        		Timestamp:
+	          		<FormControl 
+			            id="formTimestamp"
+			            className="form-control"
+			            onChange={this.handleSetTimestamp} 
+			            placeholder="Timestamp"
+			            type="text" 
+			            value={this.state.timestamp} 
+	          		/>
+	        	</FormGroup>
+
+				<br/>
+				<button className="btn btn-default" onClick={this.submitForm}>Submit</button>
+			</form>
+		)
+	}
 }

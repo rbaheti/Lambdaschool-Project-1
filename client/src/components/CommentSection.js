@@ -8,7 +8,7 @@ class CommentSection extends Component {
 	constructor(props) {
 		super();
 		this.state = {
-			username: "rashmi",
+			username: "Rashmi",
 			comments: []
 		}
 	}
@@ -35,7 +35,6 @@ class CommentSection extends Component {
 	}
 
 	render () {
-		const timestamp = this.props.timestamp;
 		//console.log(this.props.comments);
 		return (
 			<div className="Comments">
@@ -55,7 +54,7 @@ class CommentSection extends Component {
 				</div>
 
 				<div className="Comments-timestamp">
-					<Moment parse="MMMM Do YYYY, hh:mm:ss A" fromNow>{this.props.timestamp}</Moment>
+					<Moment parse="MMMM DD YYYY, hh:mm:ss A" fromNow>{this.props.timestamp}</Moment>
 				</div>
 
 				<div className="Comments-add">

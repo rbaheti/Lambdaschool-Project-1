@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers';
 import ReduxPromise from 'redux-promise';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 const configureStore = applyMiddleware(ReduxPromise)(createStore);
 const store = configureStore(

@@ -2,16 +2,11 @@ import React, { Component } from 'react';
 import './ImageFeed.css';
 import { connect } from 'react-redux';
 import { getPostData } from '../actions';
-import { NavLink } from 'react-router-dom';
 
 import SearchBar from './SearchBar.js';
 import PostContainer from './PostContainer.js';
 
 class ImageFeed extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.getPostData();
   }

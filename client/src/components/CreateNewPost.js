@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { FormControl, FormGroup } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import "./Login.css";
+import { addPost } from '../actions';
+import { connect } from 'react-redux';
 
-export default class CreateNewPost extends Component {
-	constructor() {
-		super();
+class CreateNewPost extends Component {
+	constructor(props) {
+		super(props);
 		this.state = {
 			username: '',
 			thumbnailUrl: '',
 	      	imageUrl: '',
-	      	timestamp: ''
-    	}
+	      	timestamp: '',
+    	};
 	}
 
 	handleSetUsername = (event) => {
@@ -32,77 +30,62 @@ export default class CreateNewPost extends Component {
     	this.setState({timestamp: event.target.value});
     }
 
-    submitForm = (event) => {
+    submitNewPostForm = (event) => {
     	event.preventDefault();
-    	const newPost = {
-    		username: this.state.userName, 
-    		thumbnailUrl: this.state.thumbnailUrl,
-    		imageUrl: this.state.imageUrl,
-    		timestamp: this.state.timestamp
-    	};
-    	axios.post('http://localhost:3030/newpost', newPost)
-      		.then((data) => {
-		        localStorage.setItem('uuID', data.data._id);
-		        setTimeout(() => {
-		          window.location = '/posts';
-		        }); 
-      		})
-      		.catch((err) => {
-        		console.log(err);
-      		});
+    	this.props.dispatch(addPost(this.state));
+    	this.setState({
+    		username: '', 
+    		thumbnailUrl: '',
+    		imageUrl: '',
+    		timestamp: ''
+    	});
     }
 
 	render() {
 		return (
-			<form>
-				<FormGroup>
-	          		Username:
-	          		<FormControl 
-			            id="formUsername"
-			            className="form-control"
-			            onChange={this.handleSetUsername} 
-			            placeholder="username"
-			            type="text" 
-			            value={this.state.username} 
-	          		/>
-	        	</FormGroup>
-				<FormGroup>
-					Thumbnail Url:
-	          		<FormControl 
-			            id="formThumbnailUrl"
-			            className="form-control"
-			            onChange={this.handleSetThumbnailUrl} 
-			            placeholder="Thumbnail Url"
-			            type="text" 
-			            value={this.state.thumbnailUrl} 
-	          		/>
-	        	</FormGroup>
-	        	<FormGroup>
-	        		Image Url:
-	          		<FormControl 
-			            id="formImageUrl"
-			            className="form-control"
-			            onChange={this.handleSetImageUrl} 
-			            placeholder="Image Url"
-			            type="text" 
-			            value={this.state.imageUrl} 
-	          		/>
-	        	</FormGroup>
-	        	<FormGroup>
-	        		Timestamp:
-	          		<FormControl 
-			            id="formTimestamp"
-			            className="form-control"
-			            onChange={this.handleSetTimestamp} 
-			            placeholder="Timestamp"
-			            type="text" 
-			            value={this.state.timestamp} 
-	          		/>
-	        	</FormGroup>
-
+			<form onSubmit={this.submitNewPostForm}>
+          		Username:
+          		<input 
+		            onChange={this.handleSetUsername} 
+		            placeholder="username"
+		            type="text"
+		            value={this.state.username} 
+          		/>
+          		<br/>
+				Thumbnail Url:
+				<input
+		            onChange={this.handleSetThumbnailUrl} 
+		            placeholder="Thumbnail Url"
+		            type="text" 
+		            value={this.state.thumbnailUrl} 
+          		/>
+          		<br/>
+        		Image Url:
+		        <input
+		            onChange={this.handleSetImageUrl} 
+		            placeholder="Image Url"
+		            type="text" 
+		            value={this.state.imageUrl} 
+          		/>	
+          		<br/>
+	        	Timestamp: 
+		        <input    
+		            onChange={this.handleSetTimestamp} 
+		            placeholder="Timestamp"
+		            type="text" 
+		            value={this.state.timestamp} 
+          		/>
 				<br/>
-				<button className="btn btn-default" onClick={this.submitForm}>Submit</button>
+				<button type="submit">Add new post</button>
 			</form>
 		)
 	}
 }
+
+const mapStateToProps = (state) => {
+  return {
+    posts: state
+  };
+};
+
+export default connect(mapStateToProps)(CreateNewPost);

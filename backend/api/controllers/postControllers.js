@@ -2,8 +2,8 @@ const Post = require('../models/postModels');
 
 const postCreate = (req, res) => {
   const { username, thumbnailUrl, imageUrl, likes, timestamp, comments } =  req.body;
-  const newPost = new Post({ username, thumbnailUrl, imageUrl, likes, timestamp, comments });
-  console.log("newPost: ", newPost);
+  const newPost = new Post({ username, thumbnailUrl, imageUrl, likes: 0, timestamp, comments: []});
+  // console.log("newPost: ", newPost);
   newPost.save(newPost, (err, savedpost) => {
     if (err) {
       console.log("err: ", err);

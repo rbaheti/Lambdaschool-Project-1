@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
 
 import ImageFeed from './ImageFeed.js';
-import CommentSection from './UserPostContainer';
 import UserPostContainer from './UserPostContainer.js';
 import CreateNewPost from './CreateNewPost';
 import Login from './Login';

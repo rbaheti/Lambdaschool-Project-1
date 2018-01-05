@@ -3,9 +3,6 @@ import { connect } from 'react-redux';
 import { setSearchText } from '../actions';
 
 class SearchBar extends Component {
-	constructor(props) {
-    	super(props);
-  	}
 
 	render() {
 		return (

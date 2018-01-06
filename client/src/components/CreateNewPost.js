@@ -76,7 +76,7 @@ class CreateNewPost extends Component {
 		            value={this.state.timestamp} 
           		/>
 				<br/>
-				<button type="submit">Add new post</button>
+				<button type="submit">Add New Post</button>
 			</form>
 		)
 	}

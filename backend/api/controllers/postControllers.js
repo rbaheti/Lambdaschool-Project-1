@@ -35,7 +35,7 @@ const postGetById = (req, res) => {
         .catch(err => res.status(422).json(err));
 };
 
-const postCommentAdd = (req, res) => {
+const postAddComment = (req, res) => {
   const { id } = req.params;
   const { username, text } = req.body;
   const comment = { username, text };
@@ -64,9 +64,32 @@ const postCommentAdd = (req, res) => {
       .catch(err => res.status(422).json({ error: 'No Post!' }));
 };
 
+const postAddLike = (req, res) => {
+  const {id} = req.body;
+  // find a post with the "id"
+  // grab likes count, add 1 like to it.
+  // save post
+  Post.findById(id)
+    .then(post => {
+      if (post === null) {
+        console.log("null post for " + id);
+        throw new Error();
+      }
+      ++post.likes;
+      post.save(post, (err, savedpost) => {
+        if (err) {
+          res.status(500).json(err);
+          return;
+        }
+        res.json(savedpost);
+      })
+    }).catch(err => res.status(422).json({ error: 'No Post!' }));
+};
+
 module.exports = {
   postCreate,
   postsGetAll,
   postGetById,
-  postCommentAdd
+  postAddComment,
+  postAddLike
 };

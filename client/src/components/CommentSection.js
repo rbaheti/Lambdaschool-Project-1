@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addComment } from '../actions';
 
 import './CommentSection.css';
 
@@ -8,34 +10,25 @@ class CommentSection extends Component {
 	constructor(props) {
 		super();
 		this.state = {
-			username: "Rashmi",
-			comments: []
+			username: "rashmi",
+			// comments: [],
+			// newCommentText: ""
 		}
+		this.input = null;
 	}
 
-	componentDidMount() {
-		this.setState({
-			comments: this.props.comments
-		});
-	}
-
-	addComment = (event) => {
-		if (event.keyCode === 13) {
+	handleAddComment = (event) => {
+		if(event.nativeEvent.keyCode === 13) { // 13 event.keyCode is for "enter" or "return" key
 			const newComment = {
 				username: this.state.username,
 				text: this.input.value
 			}
-
-			this.setState({
-				comments: [...this.state.comments, newComment]
-			})
-
+			this.props.dispatch(addComment(this.props.postid, newComment));
 			this.input.value = "";
 		}
 	}
 
 	render () {
-		//console.log(this.props.comments);
 		return (
 			<div className="Comments">
 				<div className="Comments-list">
@@ -58,8 +51,8 @@ class CommentSection extends Component {
 				</div>
 
 				<div className="Comments-add">
-					<input className="Comments-addField" type="text" onKeyDown={this.addComment}
-						ref={input => this.input = input} placeholder="Add a comment...">
+					<input className="Comments-addField" type="text" onKeyDown={this.handleAddComment}
+						ref={(inputParam) => this.input = inputParam} placeholder="Add a comment...">
 					</input>
 				</div>
 			</div>
@@ -67,4 +60,4 @@ class CommentSection extends Component {
 	}
 };
 
-export default CommentSection;
+export default connect()(CommentSection);

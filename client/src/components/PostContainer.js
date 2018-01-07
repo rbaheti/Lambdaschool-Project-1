@@ -37,7 +37,7 @@ class PostContainer extends Component {
 						<button onClick={() => {this.handleAddLikes(post._id)}}>Like</button>
 						<h3 className="Post-likes"> {post.likes} likes</h3>
 					</div>
-					<CommentSection comments={post.comments} timestamp={post.timestamp} />
+					<CommentSection comments={post.comments} postid={post._id} timestamp={post.timestamp} />
 				</div>
 			</div>
 		);

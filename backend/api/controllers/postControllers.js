@@ -36,8 +36,7 @@ const postGetById = (req, res) => {
 };
 
 const postAddComment = (req, res) => {
-  const { id } = req.params;
-  const { username, text } = req.body;
+  const { id, username, text } = req.body;
   const comment = { username, text };
 	// find a single post
 	// grab comments array, add our comment to it.
@@ -47,21 +46,29 @@ const postAddComment = (req, res) => {
       if (post === null) throw new Error();
       const comments = post.comments;
       comments.push(comment);
-      post
-        .save()
-        .then(newPost => {
-          Post.findById(newPost._id)
-          .populate('comments.username', 'username') // get 'username' from User's username using 'comment.username'
-          .exec((badError, savedpost) => {
-            if (badError) {
-              throw new Error()
-            }
-            res.json(savedpost);
-          });
-        })
-          .catch(err => {throw new Error()});
-    })
-      .catch(err => res.status(422).json({ error: 'No Post!' }));
+      post.save(post, (err, savedpost) => {
+        if (err) {
+          res.status(500).json(err);
+          return;
+        }
+        res.json(savedpost);
+      })
+    }).catch(err => res.status(422).json({ error: 'No Post!' }));
+      // post
+      //   .save()
+      //   .then(newPost => {
+      //     Post.findById(newPost._id)
+      //     .populate('comments.username', 'username') // get 'username' from User's username using 'comment.username'
+      //     .exec((badError, savedpost) => {
+      //       if (badError) {
+      //         console.log("badError: ", badError);
+      //         throw new Error();
+      //       }
+      //       res.json(savedpost);
+      //     });
+      //   })
+      //     .catch(err => {throw new Error()});
+    // })
 };
 
 const postAddLike = (req, res) => {
@@ -91,5 +98,5 @@ module.exports = {
   postsGetAll,
   postGetById,
   postAddComment,
-  postAddLike
+  postAddLike,
 };

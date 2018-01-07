@@ -82,10 +82,4 @@ class CreateNewPost extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-  return {
-    posts: state
-  };
-};
-
-export default connect(mapStateToProps)(CreateNewPost);
+export default connect()(CreateNewPost);

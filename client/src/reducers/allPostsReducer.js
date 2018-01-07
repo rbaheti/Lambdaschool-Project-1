@@ -1,7 +1,8 @@
 import {
   SET_POST_DATA,
   ADD_POST,
-  ADD_LIKES
+  ADD_LIKES,
+  ADD_COMMENT
  } from '../actions';
 
 export default (allPosts = [], action) => {
@@ -13,8 +14,8 @@ export default (allPosts = [], action) => {
 		  return [...allPosts, action.payload.data]; // adding new post to the previous allPosts array and
                                                  // returning the new allPosts array.
 
-    case ADD_LIKES:
-      let tempAllPostArray = [];
+    case ADD_LIKES: {
+      const tempAllPostArray = [];
       for(let i = 0; i < allPosts.length; ++i) {
         let currPost = allPosts[i];
         if(currPost._id === action.payload.data._id) {
@@ -24,6 +25,20 @@ export default (allPosts = [], action) => {
         }
       }
       return tempAllPostArray;
+    }
+
+    case ADD_COMMENT: {
+      const tempAllPostArray = [];
+      for(let i = 0; i < allPosts.length; ++i) {
+        let currPost = allPosts[i];
+        if(currPost._id === action.payload.data._id) {
+          tempAllPostArray.push(action.payload.data);
+        } else {
+          tempAllPostArray.push(currPost);
+        }
+      }
+      return tempAllPostArray;
+    }
 
     default:
       return allPosts;

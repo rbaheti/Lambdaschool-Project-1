@@ -4,6 +4,7 @@ export const SET_POST_DATA = 'SET_POST_DATA';
 export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT';
 export const ADD_POST = 'ADD_POST';
 export const ADD_LIKES = 'ADD_LIKES';
+export const ADD_COMMENT = 'ADD_COMMENT';
 
 export const getPostData = () => {
 	const postDataEndpoint = 'http://localhost:3030/posts';
@@ -36,5 +37,15 @@ export const addLikes = (postid) => {
 	return {
 		type: ADD_LIKES,
 		payload: addLikesResponse
+	};
+}
+
+export const addComment = (postid, commentObj) => {
+	console.log("postid: " + postid);
+	const addCommentEndpoint = 'http://localhost:3030/comment';
+	const addCommentResponse = axios.post(addCommentEndpoint, {"id": postid, "username": commentObj.username, "text": commentObj.text});
+	return {
+		type: ADD_COMMENT,
+		payload: addCommentResponse
 	};
 }

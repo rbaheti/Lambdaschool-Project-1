@@ -2,16 +2,22 @@ import React, { Component } from 'react';
 import './ImageFeed.css';
 import { connect } from 'react-redux';
 import { getPostData } from '../actions';
-
 import SearchBar from './SearchBar.js';
 import PostContainer from './PostContainer.js';
+import { NavLink } from 'react-router-dom';
 
 class ImageFeed extends Component {
-  componentDidMount() {
-    this.props.getPostData();
+  constructor(props) {
+    super(props);
   }
 
-  getDisplayedPosts() {
+  componentDidMount() {
+    console.log("Hello from ImageFeed componentDidMount");
+    if(this.props.allPosts.length === 0)
+      this.props.getPostData();
+  }
+
+  getDisplayedPosts = () => {
     if (this.props.searchText === '') {
       return this.props.allPosts;
     } else {
@@ -21,9 +27,14 @@ class ImageFeed extends Component {
     }
   }
 
+  handleNewPost = () => {
+    this.props.history.push("/newpost");
+  }
+
   render() {
     return (
       <div className="ImageFeed">
+        <button onClick={this.handleNewPost}>New Post</button>
         <header>
           <h1 className="ImageFeed-title">instagram</h1>
           <SearchBar/>

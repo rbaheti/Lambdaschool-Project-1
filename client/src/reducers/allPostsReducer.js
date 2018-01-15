@@ -11,7 +11,7 @@ export default (allPosts = [], action) => {
 	    return action.payload.data;
 
     case ADD_POST:
-		  return [...allPosts, action.payload.data]; // adding new post to the previous allPosts array and
+		  return [action.payload.data, ...allPosts]; // adding new post to the previous allPosts array and
                                                  // returning the new allPosts array.
 
     case ADD_LIKES: {

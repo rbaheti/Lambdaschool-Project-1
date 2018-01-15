@@ -1,47 +1,64 @@
 import React, { Component } from 'react';
 import { addPost } from '../actions';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { Redirect } from 'react-router';
+let dateFormat = require('dateformat');
 
 class CreateNewPost extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			username: '',
-			thumbnailUrl: '',
-	      	imageUrl: '',
-	      	timestamp: '',
+			post: {
+				username: '',
+				thumbnailUrl: '',
+	      		imageUrl: '',
+	      	},
+	      	redirectToHomePage: false,
     	};
 	}
 
 	handleSetUsername = (event) => {
-    	this.setState({username: event.target.value});
+		let newPost = {...this.state.post};
+		newPost.username = event.target.value;
+		this.setState({post:newPost});
     }
 
     handleSetThumbnailUrl = (event) => {
-    	this.setState({thumbnailUrl: event.target.value});
+    	let newPost = {...this.state.post};
+		newPost.thumbnailUrl = event.target.value;
+		this.setState({post:newPost});
     }
 
     handleSetImageUrl = (event) => {
-    	this.setState({imageUrl: event.target.value});
-    	console.log("imageUrl: ", this.state.imageUrl);
-    }
-
-    handleSetTimestamp = (event) => {
-    	this.setState({timestamp: event.target.value});
+    	let newPost = {...this.state.post};
+		newPost.imageUrl = event.target.value;
+		this.setState({post:newPost});
     }
 
     submitNewPostForm = (event) => {
     	event.preventDefault();
-    	this.props.dispatch(addPost(this.state));
+
+    	let newPost = {...this.state.post};
+		var now = new Date();
+		newPost.timestamp = dateFormat(now, "mmmm dS yyyy, h:MM:ss TT");
+		//newPost.timestamp = new Date().toLocaleString();
+		this.props.dispatch(addPost(newPost));
+    	
     	this.setState({
-    		username: '', 
-    		thumbnailUrl: '',
-    		imageUrl: '',
-    		timestamp: ''
+			post: {
+    			username: '', 
+    			thumbnailUrl: '',
+    			imageUrl: '',
+    		},
+    		redirectToHomePage: true,
     	});
     }
 
 	render() {
+		if (this.state.redirectToHomePage) {
+     		return (<Redirect to="/"/>);
+   		}
 		return (
 			<form onSubmit={this.submitNewPostForm}>
           		Username:
@@ -49,7 +66,7 @@ class CreateNewPost extends Component {
 		            onChange={this.handleSetUsername} 
 		            placeholder="username"
 		            type="text"
-		            value={this.state.username} 
+		            value={this.state.post.username} 
           		/>
           		<br/>
 				Thumbnail Url:
@@ -57,7 +74,7 @@ class CreateNewPost extends Component {
 		            onChange={this.handleSetThumbnailUrl} 
 		            placeholder="Thumbnail Url"
 		            type="text" 
-		            value={this.state.thumbnailUrl} 
+		            value={this.state.post.thumbnailUrl} 
           		/>
           		<br/>
         		Image Url:
@@ -65,17 +82,9 @@ class CreateNewPost extends Component {
 		            onChange={this.handleSetImageUrl} 
 		            placeholder="Image Url"
 		            type="text" 
-		            value={this.state.imageUrl} 
+		            value={this.state.post.imageUrl} 
           		/>	
           		<br/>
-	        	Timestamp: 
-		        <input    
-		            onChange={this.handleSetTimestamp} 
-		            placeholder="Timestamp"
-		            type="text" 
-		            value={this.state.timestamp} 
-          		/>
-				<br/>
 				<button type="submit">Add New Post</button>
 			</form>
 		)

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './ImageFeed.css';
 import { connect } from 'react-redux';
-import { getPostData } from '../actions';
+import { getPostData, updateUsername } from '../actions';
 import SearchBar from './SearchBar.js';
 import PostContainer from './PostContainer.js';
 import { NavLink } from 'react-router-dom';
@@ -12,9 +12,13 @@ class ImageFeed extends Component {
   }
 
   componentDidMount() {
-    console.log("Hello from ImageFeed componentDidMount");
-    if(this.props.allPosts.length === 0)
+    let username = localStorage.getItem('localStorage-username');
+    if (username !== null) {
+      this.props.updateUsername(username);
+    }
+    if(this.props.allPosts.length === 0) {
       this.props.getPostData();
+    }
   }
 
   getDisplayedPosts = () => {
@@ -34,6 +38,7 @@ class ImageFeed extends Component {
   render() {
     return (
       <div className="ImageFeed">
+        Welcome {this.props.username}!
         <button onClick={this.handleNewPost}>New Post</button>
         <header>
           <h1 className="ImageFeed-title">instagram</h1>
@@ -56,8 +61,9 @@ class ImageFeed extends Component {
 const mapStateToProps = (state) => {
   return {
     allPosts: state.allPosts,
-    searchText: state.searchText
+    searchText: state.searchText,
+    username: state.username
   };
 };
 
-export default connect(mapStateToProps, {getPostData})(ImageFeed);
+export default connect(mapStateToProps, {getPostData, updateUsername})(ImageFeed);

@@ -38,13 +38,10 @@ class CreateNewPost extends Component {
 
     submitNewPostForm = (event) => {
     	event.preventDefault();
-
     	let newPost = {...this.state.post};
-		var now = new Date();
+		let now = new Date();
 		newPost.timestamp = dateFormat(now, "mmmm dS yyyy, h:MM:ss TT");
-		//newPost.timestamp = new Date().toLocaleString();
 		this.props.dispatch(addPost(newPost));
-    	
     	this.setState({
 			post: {
     			username: '', 

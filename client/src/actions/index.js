@@ -5,6 +5,7 @@ export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT';
 export const ADD_POST = 'ADD_POST';
 export const ADD_LIKES = 'ADD_LIKES';
 export const ADD_COMMENT = 'ADD_COMMENT';
+export const UPDATE_USERNAME = 'UPDATE_USERNAME';
 
 export const getPostData = () => {
 	const postDataEndpoint = 'http://localhost:3030/posts';
@@ -47,5 +48,13 @@ export const addComment = (postid, commentObj) => {
 	return {
 		type: ADD_COMMENT,
 		payload: addCommentResponse
+	};
+}
+
+export const updateUsername = (username) => {
+	console.log("username from action: ", username);
+	return {
+		type: UPDATE_USERNAME,
+		username,
 	};
 }

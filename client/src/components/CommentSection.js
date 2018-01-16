@@ -8,11 +8,9 @@ import './CommentSection.css';
 
 class CommentSection extends Component {
 	constructor(props) {
-		super();
+		super(props);
 		this.state = {
 			username: "rashmi",
-			// comments: [],
-			// newCommentText: ""
 		}
 		this.input = null;
 	}

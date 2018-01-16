@@ -10,12 +10,13 @@ export default class CreateAccount extends Component {
     this.state = {
       username: '',
       password: '',
+      isError: false,
     }
-    this.handleSetusername = this.handleSetusername.bind(this);
+    this.handleSetUsername = this.handleSetUsername.bind(this);
     this.handleSetPassword = this.handleSetPassword.bind(this);
     this.createUser = this.createUser.bind(this);
   }
-  handleSetusername(e) {
+  handleSetUsername(e) {
     this.setState({username: e.target.value});
   }
   handleSetPassword(e) {
@@ -24,27 +25,27 @@ export default class CreateAccount extends Component {
   createUser(e) {
     e.preventDefault();
     const userToSave = {username: this.state.username, password: this.state.password};
-    axios.post('http://localhost:3030/new-user', userToSave)
+    axios.post('http://localhost:3030/newuser', userToSave)
       .then((data) => {
         localStorage.setItem('uuID', data.data._id);
-        setTimeout(() => {
-          window.location = '/posts';
-        }, 200);
+        this.setState({isError: false});
+        this.props.history.push("/");
       })
       .catch((err) => {
-        console.log({'error': err.response.error});
+        this.setState({isError: true});
+        console.log("got err: " + err);
       });
   }
   render() {
     return (
       <form className="Login-form">
         <FormGroup className="Login-group" controlId="formHorizontalEmail">
-            User Name
+            Username
             <FormControl 
               id="formHorizontalEmail"
               className="form-control"
-              onChange={this.handleSetusername} 
-              placeholder="User Name"
+              onChange={this.handleSetUsername} 
+              placeholder="Username"
               type="text" 
               value={this.state.username} 
             />
@@ -60,8 +61,11 @@ export default class CreateAccount extends Component {
               type="password" 
               value={this.state.password} 
             />
-          <Link to="/">Already a member? Login here.</Link>
           <br/>
+          {
+            this.state.isError === true ?
+            (<div> Username already exists. Please try another username.</div>) : null
+          }
           <button className="btn btn-default" onClick={this.createUser}>Create Account</button>
         </FormGroup>
       </form>

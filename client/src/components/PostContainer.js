@@ -23,7 +23,7 @@ class PostContainer extends Component {
 					<img src={post.thumbnailUrl} />
 					<h3 className="Post-username">
 						<Link className="Post-username-link" 
-							to={`/userpost/${post.username}`}> {post.username} 
+							to={`/userpost/${post.username}`}> {post.username}
 						</Link>
 					</h3>
 				</div>
@@ -44,4 +44,10 @@ class PostContainer extends Component {
 	}
 }
 
-export default connect()(PostContainer);
+const mapStateToProps = (state) => {
+  return {
+    allPosts: state.allPosts,
+  };
+};
+
+export default connect(mapStateToProps)(PostContainer);

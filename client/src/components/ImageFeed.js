@@ -22,12 +22,18 @@ class ImageFeed extends Component {
   }
 
   getDisplayedPosts = () => {
-    if (this.props.searchText === '') {
-      return this.props.allPosts;
-    } else {
+    if (this.props.searchText !== '') {
       return this.props.allPosts.filter(
         post => post.username.includes(this.props.searchText)
       );
+    } else if (this.props.match.params.username !== undefined) {
+      // props.match.params is populated when Route path has ':' prefixed variable.
+      // For example: path='/userpost/:username'
+      return this.props.allPosts.filter(
+        post => (post.username === this.props.match.params.username)
+      );
+    } else {
+      return this.props.allPosts;
     }
   }
 
@@ -47,8 +53,8 @@ class ImageFeed extends Component {
         <div className="Posts">
           {this.getDisplayedPosts().map((post, index) => {
             return (
-              <div key={post.username}>
-                <PostContainer post={post} key={index} />
+              <div key={post._id}>
+                <PostContainer post={post} />
               </div>
             );
           })}

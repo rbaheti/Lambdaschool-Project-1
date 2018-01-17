@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <Switch>
         <Route exact={true} path='/' component={ImageFeed} />
-        <Route exact={true} path='/userpost/:username' component={UserPostContainer}/>
+        <Route exact={true} path='/userpost/:username' component={ImageFeed}/>
         <Route exact={true} path='/newpost' component={CreateNewPost}/>
         <Route exact={true} path='/login' component={Login}/>
         <Route exact={true} path='/create-user' component={CreateAccount}/>

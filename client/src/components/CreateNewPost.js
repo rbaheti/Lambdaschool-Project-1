@@ -11,7 +11,7 @@ class CreateNewPost extends Component {
 		this.state = {
 			post: {
 				username: '',
-				thumbnailUrl: '',
+				thumbnailUrl: 'https://www.instagram.com/static/images/ico/apple-touch-icon-76x76-precomposed.png/932e4d9af891.png',
 	      		imageUrl: '',
 	      	},
 	      	redirectToHomePage: false,
@@ -21,12 +21,6 @@ class CreateNewPost extends Component {
 	handleSetUsername = (event) => {
 		let newPost = {...this.state.post};
 		newPost.username = event.target.value;
-		this.setState({post:newPost});
-    }
-
-    handleSetThumbnailUrl = (event) => {
-    	let newPost = {...this.state.post};
-		newPost.thumbnailUrl = event.target.value;
 		this.setState({post:newPost});
     }
 
@@ -45,7 +39,7 @@ class CreateNewPost extends Component {
     	this.setState({
 			post: {
     			username: '', 
-    			thumbnailUrl: '',
+    			thumbnailUrl: 'https://www.instagram.com/static/images/ico/apple-touch-icon-76x76-precomposed.png/932e4d9af891.png',
     			imageUrl: '',
     		},
     		redirectToHomePage: true,
@@ -64,14 +58,6 @@ class CreateNewPost extends Component {
 		            placeholder="username"
 		            type="text"
 		            value={this.state.post.username} 
-          		/>
-          		<br/>
-				Thumbnail Url:
-				<input
-		            onChange={this.handleSetThumbnailUrl} 
-		            placeholder="Thumbnail Url"
-		            type="text" 
-		            value={this.state.post.thumbnailUrl} 
           		/>
           		<br/>
         		Image Url:

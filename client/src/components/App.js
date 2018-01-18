@@ -4,7 +4,6 @@ import { Redirect, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
 import ImageFeed from './ImageFeed.js';
-import UserPostContainer from './UserPostContainer.js';
 import CreateNewPost from './CreateNewPost';
 import Login from './Login';
 import CreateAccount from './CreateAccount';

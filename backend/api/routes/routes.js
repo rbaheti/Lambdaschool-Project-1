@@ -6,7 +6,7 @@ module.exports = app => {
 	app.route('/likes').post(postControllers.postAddLike);
 	app.route('/comment').post(postControllers.postAddComment);
 	app.route('/newpost').post(postControllers.postCreate);
-	app.route('/posts/:id').get(postControllers.postGetById);
+	//app.route('/posts/:id').get(postControllers.postGetById);
 
 	app.route('/newuser').post(userControllers.userCreate);
 	app.route('/login').post(userControllers.userLogin);

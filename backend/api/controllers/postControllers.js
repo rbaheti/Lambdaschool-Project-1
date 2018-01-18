@@ -23,17 +23,17 @@ const postsGetAll = (req, res) => {
       .catch(err => res.status(422).json(err));
 };
 
-const postGetById = (req, res) => {
-  const { id } = req.params;
-  Post.findById(id)
-    .populate('username comments.username', 'username')
-    .exec()
-      .then((singlePost) => {
-        if (singlePost === null) throw new Error();
-        res.json(singlePost);
-      })
-        .catch(err => res.status(422).json(err));
-};
+// const postGetById = (req, res) => {
+//   const { id } = req.params;
+//   Post.findById(id)
+//     .populate('username comments.username', 'username')
+//     .exec()
+//       .then((singlePost) => {
+//         if (singlePost === null) throw new Error();
+//         res.json(singlePost);
+//       })
+//         .catch(err => res.status(422).json(err));
+// };
 
 const postAddComment = (req, res) => {
   const { id, username, text } = req.body;
@@ -54,21 +54,6 @@ const postAddComment = (req, res) => {
         res.json(savedpost);
       })
     }).catch(err => res.status(422).json({ error: 'No Post!' }));
-      // post
-      //   .save()
-      //   .then(newPost => {
-      //     Post.findById(newPost._id)
-      //     .populate('comments.username', 'username') // get 'username' from User's username using 'comment.username'
-      //     .exec((badError, savedpost) => {
-      //       if (badError) {
-      //         console.log("badError: ", badError);
-      //         throw new Error();
-      //       }
-      //       res.json(savedpost);
-      //     });
-      //   })
-      //     .catch(err => {throw new Error()});
-    // })
 };
 
 const postAddLike = (req, res) => {
@@ -96,7 +81,7 @@ const postAddLike = (req, res) => {
 module.exports = {
   postCreate,
   postsGetAll,
-  postGetById,
+  //postGetById,
   postAddComment,
   postAddLike,
 };

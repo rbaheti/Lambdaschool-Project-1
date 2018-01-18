@@ -8,7 +8,7 @@ class SearchBar extends Component {
 		return (
 			<div className="SearchBar">
 				<input className="SearchBar-field" type="text" 
-					onChange={() => this.props.setSearchText(this.input.value)} 
+					onChange={() => this.props.setSearchText(this.input.value)}
 					ref={inputElem => this.input = inputElem} placeholder="Search">
 				</input>
 			</div>

@@ -7,7 +7,6 @@ import './PostContainer.css';
 
 import CommentSection from './CommentSection';
 
-//function PostContainer(props) {
 class PostContainer extends Component {
 	
 	handleAddLikes = (postid) => {

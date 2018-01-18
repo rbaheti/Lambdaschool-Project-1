@@ -24,7 +24,7 @@ class ImageFeed extends Component {
   getDisplayedPosts = () => {
     if (this.props.searchText !== '') {
       return this.props.allPosts.filter(
-        post => post.username.includes(this.props.searchText)
+        post => post.username.toLowerCase().includes(this.props.searchText.toLowerCase())
       );
     } else if (this.props.match.params.username !== undefined) {
       // props.match.params is populated when Route path has ':' prefixed variable.

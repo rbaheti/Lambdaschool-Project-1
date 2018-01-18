@@ -17,10 +17,10 @@ export const getPostData = () => {
 }
 
 export const setSearchText = (text) => {
-  return {
-    type: SET_SEARCH_TEXT,
-    text
-  };
+	return {
+		type: SET_SEARCH_TEXT,
+	    text
+	};
 };
 
 export const addPost = (instaPost) => {

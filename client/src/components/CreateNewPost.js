@@ -34,7 +34,7 @@ class CreateNewPost extends Component {
     	event.preventDefault();
     	let newPost = {...this.state.post};
 		let now = new Date();
-		newPost.timestamp = dateFormat(now, "mmmm dS yyyy, h:MM:ss TT");
+		newPost.timestamp = dateFormat(now, "isoDateTime");
 		this.props.dispatch(addPost(newPost));
     	this.setState({
 			post: {

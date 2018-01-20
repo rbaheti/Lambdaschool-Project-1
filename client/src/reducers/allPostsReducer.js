@@ -7,12 +7,23 @@ import {
 
 export default (allPosts = [], action) => {
 	switch (action.type) {
-    case SET_POST_DATA:
-	    return action.payload.data;
+    case SET_POST_DATA: {
+      console.log("action.payload.data: ", action.payload.data);
+      console.log("allPosts: ", allPosts);
+      let newPosts = action.payload.data;
+      newPosts.sort(function(post1, post2) {
+        return new Date(post2.timestamp) - new Date(post1.timestamp);
+      });
+	    return newPosts;
+    }
 
     case ADD_POST:
-		  return [action.payload.data, ...allPosts]; // adding new post to the previous allPosts array and
-                                                 // returning the new allPosts array.
+      let newPosts = allPosts.slice();
+      newPosts.push(action.payload.data);
+      newPosts.sort(function(post1, post2){
+        return new Date(post2.timestamp) - new Date(post1.timestamp);
+      });
+		  return newPosts;
 
     case ADD_LIKES: {
       const tempAllPostArray = [];

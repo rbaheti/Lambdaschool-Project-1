@@ -45,7 +45,7 @@ class CommentSection extends Component {
 				</div>
 
 				<div className="Comments-timestamp">
-					<Moment parse="MMMM DD YYYY, hh:mm:ss A" fromNow>{this.props.timestamp}</Moment>
+					<Moment parse="YYYY-MM-DDTHH:mm:ss.SSSZ" fromNow>{this.props.timestamp}</Moment>
 				</div>
 
 				<div className="Comments-add">

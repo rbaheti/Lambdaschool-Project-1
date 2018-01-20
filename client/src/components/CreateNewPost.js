@@ -10,19 +10,13 @@ class CreateNewPost extends Component {
 		super(props);
 		this.state = {
 			post: {
-				username: '',
+				username: this.props.username,
 				thumbnailUrl: 'https://www.instagram.com/static/images/ico/apple-touch-icon-76x76-precomposed.png/932e4d9af891.png',
 	      		imageUrl: '',
 	      	},
 	      	redirectToHomePage: false,
     	};
 	}
-
-	handleSetUsername = (event) => {
-		let newPost = {...this.state.post};
-		newPost.username = event.target.value;
-		this.setState({post:newPost});
-    }
 
     handleSetImageUrl = (event) => {
     	let newPost = {...this.state.post};
@@ -39,7 +33,7 @@ class CreateNewPost extends Component {
 		this.props.dispatch(addPost(newPost));
     	this.setState({
 			post: {
-    			username: '', 
+    			username: this.props.username, 
     			thumbnailUrl: 'https://www.instagram.com/static/images/ico/apple-touch-icon-76x76-precomposed.png/932e4d9af891.png',
     			imageUrl: '',
     		},
@@ -53,14 +47,7 @@ class CreateNewPost extends Component {
    		}
 		return (
 			<form onSubmit={this.submitNewPostForm}>
-          		Username:
-          		<input 
-		            onChange={this.handleSetUsername} 
-		            placeholder="username"
-		            type="text"
-		            value={this.state.post.username} 
-          		/>
-          		<br/>
+          		
         		Image Url:
 		        <input
 		            onChange={this.handleSetImageUrl} 
@@ -75,4 +62,10 @@ class CreateNewPost extends Component {
 	}
 }
 
-export default connect()(CreateNewPost);
+const mapStateToProps = (state) => {
+  return {
+    username: state.username
+  };
+};
+
+export default connect(mapStateToProps)(CreateNewPost);

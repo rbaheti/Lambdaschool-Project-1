@@ -52,7 +52,6 @@ export const addComment = (postid, commentObj) => {
 }
 
 export const updateUsername = (username) => {
-	console.log("username from action: ", username);
 	return {
 		type: UPDATE_USERNAME,
 		username,

@@ -25,7 +25,6 @@ class Login extends Component {
     this.setState({password: e.target.value});
   }
   loginWithUser(e) {
-    console.log("loginWithUser called.");
     e.preventDefault();
     const user = {username: this.state.username, password: this.state.password};
     axios.post('http://localhost:3030/login', user)
@@ -37,7 +36,6 @@ class Login extends Component {
       })
       .catch((err) => {
         this.setState({isError: true});
-        console.log(err);
       });
   }
 

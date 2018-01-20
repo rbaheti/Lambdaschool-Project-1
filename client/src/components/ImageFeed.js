@@ -4,12 +4,8 @@ import { connect } from 'react-redux';
 import { getPostData, updateUsername } from '../actions';
 import SearchBar from './SearchBar.js';
 import PostContainer from './PostContainer.js';
-import { NavLink } from 'react-router-dom';
 
 class ImageFeed extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     let username = localStorage.getItem('localStorage-username');

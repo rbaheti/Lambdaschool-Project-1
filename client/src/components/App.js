@@ -16,9 +16,9 @@ class App extends Component {
   render() {
     // If a user is not logged in, all urls should redirect to /login page.
     // Second condition allows us to redirect only once instead of getting stuck in an infinite loop.
-    if (this.props.username === "" && this.props.location.pathname !== "/login") {
-      return (<Redirect to="/login"/>);
-    }
+    // if (this.props.username === "" && this.props.location.pathname !== "/login") {
+    //   return (<Redirect to="/login"/>);
+    // }
     return (
       <Switch>
         <Route exact={true} path='/' component={ImageFeed} />

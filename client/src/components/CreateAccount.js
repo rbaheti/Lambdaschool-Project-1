@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { FormControl, FormGroup } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import "./Login.css";
+import { connect } from 'react-redux';
+import { updateUsername } from '../actions';
 
-export default class CreateAccount extends Component {
+class CreateAccount extends Component {
   constructor(){
     super();
     this.state = {
@@ -27,8 +28,9 @@ export default class CreateAccount extends Component {
     const userToSave = {username: this.state.username, password: this.state.password};
     axios.post('http://localhost:3030/newuser', userToSave)
       .then((data) => {
-        localStorage.setItem('uuID', data.data._id);
+        localStorage.setItem('localStorage-username', this.state.username);
         this.setState({isError: false});
+        this.props.dispatch(updateUsername(this.state.username));
         this.props.history.push("/");
       })
       .catch((err) => {
@@ -72,3 +74,5 @@ export default class CreateAccount extends Component {
     )
   }
 }
+
+export default connect()(CreateAccount);

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { addPost } from '../actions';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { Redirect } from 'react-router';
 let dateFormat = require('dateformat');
 

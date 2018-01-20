@@ -42,7 +42,6 @@ export const addLikes = (postid) => {
 }
 
 export const addComment = (postid, commentObj) => {
-	console.log("postid: " + postid);
 	const addCommentEndpoint = 'http://localhost:3030/comment';
 	const addCommentResponse = axios.post(addCommentEndpoint, {"id": postid, "username": commentObj.username, "text": commentObj.text});
 	return {

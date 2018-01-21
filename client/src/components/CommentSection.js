@@ -10,7 +10,7 @@ class CommentSection extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			username: "rashmi",
+			username: "",
 		}
 		this.input = null;
 	}
@@ -18,7 +18,7 @@ class CommentSection extends Component {
 	handleAddComment = (event) => {
 		if(event.nativeEvent.keyCode === 13) { // 13 event.keyCode is for "enter" or "return" key
 			const newComment = {
-				username: this.state.username,
+				username: this.props.username,
 				text: this.input.value
 			}
 			this.props.dispatch(addComment(this.props.postid, newComment));
@@ -58,4 +58,10 @@ class CommentSection extends Component {
 	}
 };
 
-export default connect()(CommentSection);
+const mapStateToProps = (state) => {
+  return {
+    username: state.username
+  };
+};
+
+export default connect(mapStateToProps)(CommentSection);

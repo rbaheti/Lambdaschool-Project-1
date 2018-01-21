@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { Redirect, withRouter } from 'react-router';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
 import ImageFeed from './ImageFeed.js';
@@ -9,9 +9,6 @@ import Login from './Login';
 import CreateAccount from './CreateAccount';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     // If a user is not logged in, all urls should redirect to /login page.

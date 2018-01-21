@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { FormControl, FormGroup } from 'react-bootstrap';
-import "./Login.css";
 import { connect } from 'react-redux';
 import { updateUsername } from '../actions';
 import "./CreateAccount.css";
+import "./Login.css";
 
 class CreateAccount extends Component {
   constructor(){
@@ -36,7 +35,6 @@ class CreateAccount extends Component {
       })
       .catch((err) => {
         this.setState({isError: true});
-        console.log("got err: " + err);
       });
   }
   render() {

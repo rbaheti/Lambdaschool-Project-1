@@ -38,12 +38,39 @@ class ImageFeed extends Component {
     this.props.history.push("/newpost");
   }
 
+  handleLogout = () => {
+    localStorage.clear();
+    window.location.reload();
+  }
+
   render() {
+    const isUserLoggedIn = (this.props.username !== '');
     return (
       <div className="ImageFeed">
         <div className="Welcome-header">
-          <div className="Welcome-text">Welcome {this.props.username}!</div>
-          <Link to="/newpost"><div className="Welcome-header-newpost-link">Create New Post</div></Link>
+          <div className="Welcome-text">
+            Welcome
+            {
+              isUserLoggedIn ?
+              (<span className="Welcome-text-username">
+                <Link to={`/userpost/${this.props.username}`}> {this.props.username}!</Link>
+              </span>) : ('!')
+            }
+          </div>
+          {/* Following link needs to be outside .Welcome-text div for proper alignment. */}
+          {
+            !isUserLoggedIn ?
+            (<Link to="/login"><div className="Welcome-header-login-link">Log In</div></Link>) : null
+          }
+          {
+            isUserLoggedIn ?
+            (<Link to="/newpost"><div className="Welcome-header-newpost-link">Create New Post</div></Link>) : null
+          }
+          <Link to="/"><div className="Welcome-header-home-link">Home</div></Link>
+          {
+            isUserLoggedIn ?
+            (<Link to="/"><div className="Welcome-header-logout-link" onClick={this.handleLogout}>Logout</div></Link>) : null
+          }
         </div>
         <div className="ImageFeed-header">
           <div className="ImageFeed-title">instagram</div>

@@ -2,23 +2,21 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addLikes } from '../actions';
-
 import './PostContainer.css';
-
 import CommentSection from './CommentSection';
 
 class PostContainer extends Component {
 	handleAddLikes = (postid) => {
-		console.log(postid);
     	this.props.dispatch(addLikes(postid));
 	}
 
 	render() {
+		// caller for PostContainer is ImageFeed
 		const post = this.props.post;
 		return (
 			<div className="Post">
 				<div className="Post-header">
-					<img src={post.thumbnailUrl} />
+					<img alt="" src={post.thumbnailUrl} />
 					<h3 className="Post-username">
 						<Link className="Post-username-link" 
 							to={`/userpost/${post.username}`}> {post.username}
@@ -27,7 +25,7 @@ class PostContainer extends Component {
 				</div>
 
 				<div className="Post-image">
-					<img src={post.imageUrl} />
+					<img alt="" src={post.imageUrl} />
 				</div>
 
 				<div className="Post-body">

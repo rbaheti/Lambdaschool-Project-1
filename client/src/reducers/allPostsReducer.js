@@ -8,8 +8,6 @@ import {
 export default (allPosts = [], action) => {
 	switch (action.type) {
     case SET_POST_DATA: {
-      console.log("action.payload.data: ", action.payload.data);
-      console.log("allPosts: ", allPosts);
       let newPosts = action.payload.data;
       newPosts.sort(function(post1, post2) {
         return new Date(post2.timestamp) - new Date(post1.timestamp);

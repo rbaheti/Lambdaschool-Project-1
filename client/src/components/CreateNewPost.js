@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { addPost } from '../actions';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
+import "./CreateNewPost.css";
+
 let dateFormat = require('dateformat');
 
 class CreateNewPost extends Component {
@@ -14,6 +16,7 @@ class CreateNewPost extends Component {
 	      		imageUrl: '',
 	      	},
 	      	redirectToHomePage: false,
+	      	isError: false,
     	};
 	}
 
@@ -25,6 +28,12 @@ class CreateNewPost extends Component {
 
     submitNewPostForm = (event) => {
     	event.preventDefault();
+    	if (this.state.post.imageUrl === "") {
+    		this.setState({isError: true});
+    		return;
+    	}
+    	this.setState({isError: false});
+
     	let newPost = {...this.state.post};
 		let now = new Date();
 		console.log("dateFormat(now, 'isoDateTime'): ", dateFormat(now, "isoDateTime"));
@@ -45,18 +54,23 @@ class CreateNewPost extends Component {
      		return (<Redirect to="/"/>);
    		}
 		return (
-			<form onSubmit={this.submitNewPostForm}>
-          		
-        		Image Url:
-		        <input
-		            onChange={this.handleSetImageUrl} 
-		            placeholder="Image Url"
-		            type="text" 
-		            value={this.state.post.imageUrl} 
-          		/>	
-          		<br/>
-				<button type="submit">Add New Post</button>
-			</form>
+			<form className="newpost-form">
+		        <ul className="newpost-form-style">
+		          <li>
+		            <label>Image Url <span className="redcolor">*</span></label>
+		            <input type="text" className="field-long" onChange={this.handleSetImageUrl} value={this.state.post.imageUrl} />
+		          </li>
+		          {
+            		this.state.isError === true ?
+            		(<li><label className="redcolor">Invalid input. Please try again.</label></li>) : null
+          		  }
+		          <li>
+		          	<div className="buttonDiv">
+		          		<input type="submit" onClick={this.submitNewPostForm} value="Add New Post" />
+		          	</div>
+		          </li>
+		        </ul>
+	      </form>
 		)
 	}
 }

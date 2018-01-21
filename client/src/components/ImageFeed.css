@@ -1,31 +1,34 @@
 .ImageFeed {
   text-align: left;
-  margin-left: 40px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 header {
-  background-color: #222;
+  background-color: #4B99AD;
   text-align: center;
   width: 100%;
-  height: 100px;
-  padding: 20px;
+  height: 50px;
   color: white;
   margin-bottom: 20px;
+  padding: 15px;
 }
 
 .ImageFeed-title {
   position: absolute;
   left: 60px;
+  font: 30px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-weight: bold;
 }
 
 .SearchBar {
   position: absolute;
   display: inline;
-  margin-top: 30px;
 }
 
 .SearchBar input {
-  height: 20px;
-  width: 150px;
+  height: 25px;
+  width: 200px;
   text-align: center;
+  font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }

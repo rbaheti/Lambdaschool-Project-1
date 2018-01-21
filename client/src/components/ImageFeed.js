@@ -43,7 +43,7 @@ class ImageFeed extends Component {
         Welcome {this.props.username}!
         <button onClick={this.handleNewPost}>New Post</button>
         <header>
-          <h1 className="ImageFeed-title">instagram</h1>
+          <div className="ImageFeed-title">instagram</div>
           <SearchBar/>
         </header>
         <div className="Posts">

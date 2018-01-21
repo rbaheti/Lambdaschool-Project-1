@@ -1,23 +1,23 @@
-.login-form-style {
+.signup-form-style {
     margin:10px auto;
     max-width: 400px;
     padding: 20px 12px 10px 20px;
     font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
-.login-form-style li {
+.signup-form-style li {
     padding: 0;
     display: block;
     list-style: none;
     margin: 10px 0 0 0;
 }
-.login-form-style label {
+.signup-form-style label {
     margin:0 0 3px 0;
     padding:0px;
     display:block;
     font-weight: bold;
 }
-.login-form-style input[type=text],
-.login-form-style input[type=password] {
+.signup-form-style input[type=text],
+.signup-form-style input[type=password] {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -30,29 +30,29 @@
     -o-transition: all 0.30s ease-in-out;
     outline: none; 
 }
-.login-form-style input[type=text]:focus,
-.login-form-style input[type=password]:focus {
+.signup-form-style input[type=text]:focus,
+.signup-form-style input[type=password]:focus {
     -moz-box-shadow: 0 0 8px #88D5E9;
     -webkit-box-shadow: 0 0 8px #88D5E9;
     box-shadow: 0 0 8px #88D5E9;
     border: 1px solid #88D5E9;
 }
 
-.login-form-style .field-long {
+.signup-form-style .field-long {
     width: 100%;
 }
-.login-form-style input[type=submit] {
+.signup-form-style input[type=submit] {
     background: #4B99AD;
     padding: 8px 15px 8px 15px;
     border: none;
     color: #fff;
 }
-.login-form-style input[type=submit]:hover {
+.signup-form-style input[type=submit]:hover {
     background: #4691A4;
     box-shadow:none;
     -moz-box-shadow:none;
     -webkit-box-shadow:none;
 }
-.login-form-style .redcolor{
+.signup-form-style .redcolor{
     color:red;
 }

@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from 'react-bootstrap';
 import "./Login.css";
 import { connect } from 'react-redux';
 import { updateUsername } from '../actions';
+import "./CreateAccount.css";
 
 class CreateAccount extends Component {
   constructor(){
@@ -40,36 +41,22 @@ class CreateAccount extends Component {
   }
   render() {
     return (
-      <form className="Login-form">
-        <FormGroup className="Login-group" controlId="formHorizontalEmail">
-            Username
-            <FormControl 
-              id="formHorizontalEmail"
-              className="form-control"
-              onChange={this.handleSetUsername} 
-              placeholder="Username"
-              type="text" 
-              value={this.state.username} 
-            />
-          </FormGroup>
-          
-          <FormGroup className="Login-group" controlId="formHorizontalPassword">
-            Password
-            <FormControl 
-              id="formHorizontalPassword"
-              className="form-control"
-              onChange={this.handleSetPassword} 
-              placeholder="password"
-              type="password" 
-              value={this.state.password} 
-            />
-          <br/>
+      <form className="signup-form">
+        <ul className="signup-form-style">
+          <li>
+            <label>Username <span className="redcolor">*</span></label>
+            <input type="text" className="field-long" onChange={this.handleSetUsername} value={this.state.username} />
+          </li>
+          <li>
+            <label>Password <span className="redcolor">*</span></label>
+            <input type="password" className="field-long" onChange={this.handleSetPassword} value={this.state.password} />
+          </li>
           {
             this.state.isError === true ?
-            (<div> Username already exists. Please try another username.</div>) : null
+            (<li><label className="redcolor">Username already exists. Please try another username.</label></li>) : null
           }
-          <button className="btn btn-default" onClick={this.createUser}>Create Account</button>
-        </FormGroup>
+          <li><input type="submit" onClick={this.createUser} value="Sign Up" /></li>
+        </ul>
       </form>
     )
   }

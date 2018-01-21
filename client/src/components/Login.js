@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { FormControl, FormGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateUsername } from '../actions';
@@ -42,35 +41,24 @@ class Login extends Component {
   render() {
     return (
       <form className="Login-form">
-        <FormGroup className="Login-group" controlId="formHorizontalEmail">
-          User Name
-          <FormControl 
-            id="formHorizontalEmail"
-            className="form-control"
-            onChange={this.handleSetUsername} 
-            placeholder="User Name"
-            type="text" 
-            value={this.state.username} 
-          />
-        </FormGroup>
-        <FormGroup className="Login-group" controlId="formHorizontalPassword">
-          Password
-          <FormControl 
-            id="formHorizontalPassword"
-            className="form-control"
-            onChange={this.handleSetPassword} 
-            placeholder="password"
-            type="password" 
-            value={this.state.password} 
-          />
-          <Link to="/create-user">Don't have an account? Sign up here.</Link>
-          <br />
+        <ul className="login-form-style">
+          <li>
+            <label>Username <span className="redcolor">*</span></label>
+            <input type="text" className="field-long" onChange={this.handleSetUsername} value={this.state.username} />
+          </li>
+          <li>
+            <label>Password <span className="redcolor">*</span></label>
+            <input type="password" className="field-long" onChange={this.handleSetPassword} value={this.state.password} />
+          </li>
+          <Link to="/create-user">
+          <li><label>Don't have an account? Sign up here.</label></li>
+          </Link>
           {
             this.state.isError === true ?
-            (<div> Username or Password incorrect. Please try again.</div>) : null
+            (<li><label className="redcolor">Username or Password incorrect. Please try again.</label></li>) : null
           }
-          <button className="btn btn-default" onClick={this.loginWithUser}>Login</button>
-        </FormGroup>
+          <li><input type="submit" onClick={this.loginWithUser} value="Sign In" /></li>
+        </ul>
       </form>
     )
   }

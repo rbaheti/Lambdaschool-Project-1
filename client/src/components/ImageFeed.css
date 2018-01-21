@@ -4,7 +4,33 @@
   margin-right: 20px;
 }
 
-header {
+.Welcome-header {
+  font: 15px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  color: #4691A4;
+}
+
+.Welcome-text {
+  font-weight: bold;
+  color: #4691A4;
+  float: left;
+  margin: 5px 0px 5px 0px;
+  padding-right: 5px;
+}
+
+.Welcome-header-newpost-link {
+  background: #4B99AD;
+  color: white;
+  float: left;
+  margin: 5px 0px 5px 0px;
+  padding: 0px 5px 0px 5px;
+}
+
+.Welcome-header-newpost-link:hover {
+  background: #4691A4;
+}
+
+.ImageFeed-header {
+  clear: both;
   background-color: #4B99AD;
   text-align: center;
   width: 100%;
@@ -15,15 +41,12 @@ header {
 }
 
 .ImageFeed-title {
-  position: absolute;
+  width: 15%;
+  height: 50px;
+  float: left;
   left: 60px;
   font: 30px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   font-weight: bold;
-}
-
-.SearchBar {
-  position: absolute;
-  display: inline;
 }
 
 .SearchBar input {
@@ -31,4 +54,9 @@ header {
   width: 200px;
   text-align: center;
   font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.SearchBar {
+  margin-left: 25%;
+  line-height: 50px;
 }

@@ -1,6 +1,9 @@
 .Post {
 	border: 0.5px solid gray;
-	max-width: 500px;
+	max-width: 550px;
+	<-- Following 2 help center posts. -->
+	display: table;
+	margin: 0 auto;
 	margin-bottom: 40px;
 }
 

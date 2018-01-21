@@ -3,6 +3,7 @@ import './ImageFeed.css';
 import { connect } from 'react-redux';
 import { getPostData, updateUsername } from '../actions';
 import SearchBar from './SearchBar.js';
+import { Link } from 'react-router-dom';
 import PostContainer from './PostContainer.js';
 
 class ImageFeed extends Component {
@@ -40,12 +41,14 @@ class ImageFeed extends Component {
   render() {
     return (
       <div className="ImageFeed">
-        Welcome {this.props.username}!
-        <button onClick={this.handleNewPost}>New Post</button>
-        <header>
+        <div className="Welcome-header">
+          <div className="Welcome-text">Welcome {this.props.username}!</div>
+          <Link to="/newpost"><div className="Welcome-header-newpost-link">Create New Post</div></Link>
+        </div>
+        <div className="ImageFeed-header">
           <div className="ImageFeed-title">instagram</div>
           <SearchBar/>
-        </header>
+        </div>
         <div className="Posts">
           {this.getDisplayedPosts().map((post, index) => {
             return (

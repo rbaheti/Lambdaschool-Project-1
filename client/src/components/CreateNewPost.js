@@ -12,7 +12,7 @@ class CreateNewPost extends Component {
 		this.state = {
 			post: {
 				username: this.props.username,
-				thumbnailUrl: 'https://www.instagram.com/static/images/ico/apple-touch-icon-76x76-precomposed.png/932e4d9af891.png',
+				thumbnailUrl: 'http://www.gardensdecor.com/cdn/img/flower-and-butterfly-images-free-stock-photos-download-11381-intended-for-flower-with-butterfly.jpg',
 	      		imageUrl: '',
 	      	},
 	      	redirectToHomePage: false,
@@ -41,7 +41,7 @@ class CreateNewPost extends Component {
     	this.setState({
 			post: {
     			username: this.props.username, 
-    			thumbnailUrl: 'https://www.instagram.com/static/images/ico/apple-touch-icon-76x76-precomposed.png/932e4d9af891.png',
+    			thumbnailUrl: 'http://www.gardensdecor.com/cdn/img/flower-and-butterfly-images-free-stock-photos-download-11381-intended-for-flower-with-butterfly.jpg',
     			imageUrl: '',
     		},
     		redirectToHomePage: true,

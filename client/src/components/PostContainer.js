@@ -7,6 +7,9 @@ import CommentSection from './CommentSection';
 
 class PostContainer extends Component {
 	handleAddLikes = (postid) => {
+		if (this.props.username === "") {
+			return;
+		}
     	this.props.dispatch(addLikes(postid));
 	}
 
@@ -43,6 +46,7 @@ class PostContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     allPosts: state.allPosts,
+    username: state.username,
   };
 };
 

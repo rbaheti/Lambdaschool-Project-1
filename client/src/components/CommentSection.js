@@ -9,9 +9,7 @@ import './CommentSection.css';
 class CommentSection extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			username: "",
-		}
+		/* This is initialized using ref attribute of a component below. */
 		this.input = null;
 	}
 
@@ -21,7 +19,9 @@ class CommentSection extends Component {
 				username: this.props.username,
 				text: this.input.value
 			}
-			this.props.dispatch(addComment(this.props.postid, newComment));
+			if (this.props.username !== "") {
+				this.props.dispatch(addComment(this.props.postid, newComment));
+			}
 			this.input.value = "";
 		}
 	}

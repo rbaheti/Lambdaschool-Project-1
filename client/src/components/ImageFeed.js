@@ -73,7 +73,7 @@ class ImageFeed extends Component {
           }
         </div>
         <div className="ImageFeed-header">
-          <div className="ImageFeed-title">instagram</div>
+          <div className="ImageFeed-title">Instapic</div>
           <SearchBar/>
         </div>
         <div className="Posts">

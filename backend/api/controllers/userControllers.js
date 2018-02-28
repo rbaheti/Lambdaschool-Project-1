@@ -33,7 +33,6 @@ const userLogin = (req, res) => {
 const usersGetAll = (req, res) => {
   User.find({})
     .then(users => {
-      if (users.length === 0) throw new Error();
       res.json(users)
     })
     .catch(err => res.status(422).json(err));

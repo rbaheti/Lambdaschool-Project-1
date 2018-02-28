@@ -17,7 +17,6 @@ const postCreate = (req, res) => {
 const postsGetAll = (req, res) => {
   Post.find({})
     .then(posts => {
-      if (posts.length === 0) throw new Error();
       res.json(posts)
     })
       .catch(err => res.status(422).json(err));

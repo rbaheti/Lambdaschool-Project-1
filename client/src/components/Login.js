@@ -51,7 +51,7 @@ class Login extends Component {
             <input type="password" className="field-long" onChange={this.handleSetPassword} value={this.state.password} />
           </li>
           <Link to="/create-user">
-          <li><label>Don't have an account? Sign up here.</label></li>
+            <li><label>Don't have an account? Sign up here.</label></li>
           </Link>
           {
             this.state.isError === true ?

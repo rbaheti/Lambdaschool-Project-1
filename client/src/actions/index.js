@@ -8,7 +8,7 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const UPDATE_USERNAME = 'UPDATE_USERNAME';
 
 export const getPostData = () => {
-	const postDataEndpoint = 'http://localhost:3030/posts';
+	const postDataEndpoint = 'https://still-bayou-92912.herokuapp.com/posts';
 	const postData = axios.get(postDataEndpoint);
 	return {
 		type: SET_POST_DATA,
@@ -24,7 +24,7 @@ export const setSearchText = (text) => {
 };
 
 export const addPost = (instaPost) => {
-	const addPostEndpoint = 'http://localhost:3030/newpost';
+	const addPostEndpoint = 'https://still-bayou-92912.herokuapp.com/newpost';
 	const addPostResponse = axios.post(addPostEndpoint, instaPost);
 	return {
 		type: ADD_POST,
@@ -33,7 +33,7 @@ export const addPost = (instaPost) => {
 };
 
 export const addLikes = (postid) => {
-	const addLikeEndpoint = 'http://localhost:3030/likes';
+	const addLikeEndpoint = 'https://still-bayou-92912.herokuapp.com/likes';
 	const addLikesResponse = axios.post(addLikeEndpoint, {"id": postid});
 	return {
 		type: ADD_LIKES,
@@ -42,7 +42,7 @@ export const addLikes = (postid) => {
 }
 
 export const addComment = (postid, commentObj) => {
-	const addCommentEndpoint = 'http://localhost:3030/comment';
+	const addCommentEndpoint = 'https://still-bayou-92912.herokuapp.com/comment';
 	const addCommentResponse = axios.post(addCommentEndpoint, {"id": postid, "username": commentObj.username, "text": commentObj.text});
 	return {
 		type: ADD_COMMENT,
